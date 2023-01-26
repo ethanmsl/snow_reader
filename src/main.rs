@@ -12,7 +12,7 @@ fn main() {
     // iterate over in-memory clone of file
     contents
         .lines()
-        .take(20)
+        .take(40)
         .for_each(|line| println!("{}", line));
 
     // // set up a stream to read file from
