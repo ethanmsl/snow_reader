@@ -28,7 +28,7 @@ pub struct ScriptContents {
     pub api_name: Option<String>,
     pub client_callable: Option<String>,
     pub description: Option<String>,
-    pub name: Option<String>,
+    pub name: String,
     pub script: Option<String>,
     pub event_name: Option<String>,
     pub sys_class_name: Option<String>,
