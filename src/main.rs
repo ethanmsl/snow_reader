@@ -3,7 +3,7 @@
 #![allow(clippy::uninlined_format_args)]
 
 use serde_xml_rs::from_str;
-use snow_read::snow_obj::{Script, Unload};
+use snow_read::snow_serde::{Script, Unload};
 
 fn main() {
     println!("--------------------------------");

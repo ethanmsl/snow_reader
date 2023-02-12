@@ -1,7 +1,7 @@
 //! Look -- I'm the `lib.rs`'s doc string! :)
 
 use std::fs;
-pub mod snow_obj;
+pub mod snow_serde;
 
 /// An example function
 pub fn add(left: usize, right: usize) -> usize {
