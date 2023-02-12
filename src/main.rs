@@ -1,3 +1,5 @@
+//! `main.rs`
+
 // use file system
 
 use std::fs;
