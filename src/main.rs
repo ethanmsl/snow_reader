@@ -1,22 +1,27 @@
 //! `main.rs`
 
-// use file system
-
+use roxmltree;
+use serde::{Deserialize, Serialize};
+use serde_xml_rs::{from_str, to_string};
+use snow_read::snow_obj::Unload;
 use std::fs;
 
 fn main() {
-    println!("Hello, world!");
+    // #[derive(Debug, Serialize, Deserialize, PartialEq)]
+    // struct PlateAppearance {
+    //     #[serde(rename = "$value")]
+    //     events: Vec<String>
+    // }
 
-    // read in file
-    let contents =
-        fs::read_to_string("snow_files/sys_script_include.xml").expect("\nFile Read Error\n");
+    println!("--------------------------------");
+    let contents = snow_read::snow_example_art();
+    let doc = roxmltree::Document::parse(&contents).unwrap();
+    println!("roxmltree doc:\n\n{:?}", doc);
 
-    // iterate over in-memory clone of file
-    contents
-        .lines()
-        .take(40)
-        .for_each(|line| println!("{}", line));
-
-    // // set up a stream to read file from
-    // let mut stream = fs::File::open("snow_files/sys_script_include.xml").expect("\nFile Read Error\n");
+    println!("--------------------------------");
+    println!("--------------------------------");
+    let contents = snow_read::snow_example_long();
+    let item: Unload = from_str(&contents).expect("Failed to parse `&contents` into `Unload`");
+    // println!("deserd'd:\n\n{:?}", item.unwrap());
+    dbg!(item);
 }
