@@ -22,9 +22,7 @@ pub fn add(left: usize, right: usize) -> usize {
 ///         - ...
 ///     - ...
 pub fn snow_example_long() -> String {
-    let contents =
-        fs::read_to_string("snow_files/sys_script_include.xml").expect("\nFile Read Error\n");
-    contents
+    fs::read_to_string("snow_files/sys_script_include.xml").expect("\nFile Read Error\n")
 }
 
 /// reads in an artificial (very short) xml-encoded SNOW file
@@ -38,8 +36,7 @@ pub fn snow_example_long() -> String {
 ///             - various
 ///             - ...
 pub fn snow_example_art() -> String {
-    let contents = fs::read_to_string("snow_files/fake_simple.xml").expect("\nFile Read Error\n");
-    contents
+    fs::read_to_string("snow_files/fake_simple.xml").expect("\nFile Read Error\n")
 }
 
 /// reads in a short xml-encoded SNOW file
@@ -53,9 +50,7 @@ pub fn snow_example_art() -> String {
 ///             - various
 ///             - ...
 pub fn snow_example_short() -> String {
-    let contents =
-        fs::read_to_string("snow_files/sysevent_script_action.xml").expect("\nFile Read Error\n");
-    contents
+    fs::read_to_string("snow_files/sysevent_script_action.xml").expect("\nFile Read Error\n")
 }
 
 // // Error specification issue -- I need the internet to figure this out

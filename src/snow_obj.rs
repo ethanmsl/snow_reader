@@ -1,7 +1,6 @@
 //! struct(s) to define simple SNOW objects
 
 use serde::{Deserialize, Serialize};
-// use serde_xml_rs::{from_str, to_string};
 
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Unload {

@@ -1,10 +1,9 @@
 //! `main.rs`
 
-use roxmltree;
-use serde::{Deserialize, Serialize};
-use serde_xml_rs::{from_str, to_string};
+#![allow(clippy::uninlined_format_args)]
+
+use serde_xml_rs::from_str;
 use snow_read::snow_obj::Unload;
-use std::fs;
 
 fn main() {
     // #[derive(Debug, Serialize, Deserialize, PartialEq)]
