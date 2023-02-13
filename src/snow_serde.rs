@@ -1,6 +1,7 @@
 //! struct(s) to define simple SNOW objects
 
 use serde::{Deserialize, Serialize};
+use struct_field_names_as_array::FieldNamesAsArray;
 
 /// the Parent(most) structure
 /// a series of script types
@@ -21,7 +22,7 @@ pub enum Script {
 
 /// represents the content elements of an individual script
 /// Currently all set as "Option" -- as I'm uncertain regarding consistency
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(FieldNamesAsArray, Debug, Serialize, Deserialize, PartialEq)]
 pub struct ScriptContents {
     pub access: Option<String>,
     pub active: Option<String>,

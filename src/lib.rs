@@ -39,6 +39,11 @@ pub fn snow_example_art() -> String {
     fs::read_to_string("snow_files/fake_simple.xml").expect("\nFile Read Error\n")
 }
 
+/// something to search in the long one for
+pub fn snow_example_search() -> String {
+    fs::read_to_string("snow_files/search_include.xml").expect("\nFile Read Error\n")
+}
+
 /// reads in a short xml-encoded SNOW file
 /// (**42 lines**)
 ///
