@@ -22,7 +22,9 @@ fn main() {
     println!("--------------------------------");
     for elem in &item_long.scripts {
         match elem {
-            Script::SysScriptInclude(x)|Script::SyseventScriptAction(x) => println!("\n{:?}", x.name),
+            Script::SysScriptInclude(x) | Script::SyseventScriptAction(x) => {
+                println!("\n{:?}", x.name)
+            }
         }
     }
 }
