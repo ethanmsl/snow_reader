@@ -1,6 +1,7 @@
 //! `main.rs`
 
-use snow_read::snow_serde::{Script, ScriptContents, Unload};
+use snow_read::differ::diff_inline;
+use snow_read::snow_serde::{Script, Unload};
 
 fn main() {
     println!("--------------------------------");
@@ -18,8 +19,12 @@ fn main() {
         };
         if search_contents.name == contents.name {
             println!("found: {:?}", search_contents.name);
-            println!("search: {:?}", search_contents.description);
-            println!("base: {:?}", contents.description);
+
+            let old = contents.script.as_ref().unwrap();
+            let new = search_contents.script.as_ref().unwrap();
+
+            // diffs & prints
+            diff_inline(old, new);
         }
     }
 }
