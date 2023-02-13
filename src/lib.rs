@@ -1,6 +1,7 @@
 //! Look -- I'm the `lib.rs`'s doc string! :)
 
 use std::fs;
+pub mod differ;
 pub mod snow_serde;
 
 /// An example function
