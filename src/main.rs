@@ -18,8 +18,9 @@ fn main() {
             Script::SysScriptInclude(x) | Script::SyseventScriptAction(x) => x,
         };
         if search_contents.name == contents.name {
-            println!("found: {:?}", search_contents.name);
-
+            println!("\nATTENTION.");
+            println!("File difference detected in file:
+                                    --- {} ---\n", search_contents.name);
             let old = contents.script.as_ref().unwrap();
             let new = search_contents.script.as_ref().unwrap();
 
