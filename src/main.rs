@@ -1,7 +1,7 @@
 //! `main.rs`
 
 use snow_read::differ::diff_inline;
-use snow_read::snow_serde::{Script, Unload};
+use snow_read::snow_serde::{Script, ScriptContents, Unload};
 
 fn main() {
     println!("--------------------------------");
@@ -31,4 +31,12 @@ fn main() {
             diff_inline(old, new);
         }
     }
+
+    println!("--------------------------------");
+    let fnames = ScriptContents::FIELD_NAMES_AS_ARRAY;
+    println!("fields recorded in (input) script:");
+    print!(" {:?}", fnames);
+
+    // println!("--------------------------------");
+    // dbg!(item_search);
 }
