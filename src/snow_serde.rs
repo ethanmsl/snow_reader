@@ -17,7 +17,7 @@ pub struct Unload {
 #[serde(rename_all = "snake_case")]
 pub enum Script {
     SysScriptInclude(ScriptContents),
-    SyseventScriptAction(ScriptContents),
+    SysEventScriptAction(ScriptContents),
 }
 
 /// represents the content elements of an individual script
