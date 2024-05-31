@@ -2,6 +2,7 @@
 
 use snow_read::differ::diff_inline;
 use snow_read::snow_serde::{Script, ScriptContents, Unload};
+use struct_field_names_as_array::FieldNamesAsArray;
 
 fn main() {
     println!("--------------------------------");

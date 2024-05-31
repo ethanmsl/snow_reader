@@ -6,11 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-console = "0.15.5"
-polars = "0.27.2"
-quick-xml = "0.27.1"
-roxmltree = "0.17.0"
-serde = { version = "1.0.152", features = ["derive", "std"] }
-serde-xml-rs = "0.6.0"
-similar = { version = "2.2.1", features = ["inline"]}
-struct-field-names-as-array = "0.1.4"
+console = "0.15"
+quick-xml = { version = "0.31", features = ["serde"] }
+roxmltree = "0.20"
+serde = { version = "1.0", features = ["derive", "std"] }
+serde-xml-rs = "0.6"
+similar = { version = "2.5", features = ["inline"]}
+struct-field-names-as-array = "0.3"
