@@ -9,7 +9,7 @@
 
 - **using**: `serde` for deserialization, `xml_serde_rs` for xml pattern of deserializer, `similar` for multi-algorithm text differencing, `console` for formatting of output
 
-- **tentative**: `polars` for easier manipulation of data for statistics calculation, `quick-xml` for faster alternative to xml deserialization should it become an issue, `struct-field-names-as-array` for struct name extration macro -- for onveneince as part of transposing and dataframe construction for `polars`, `roxmltree` should there be critical attribute data separate from child data (re: xml's unusual parse characteristics)
+- **tentative**: `polars` for easier manipulation of data for statistics calculation, `quick-xml` for faster alternative to xml deserialization should it become an issue, `struct-field-names-as-array` for struct name extraction macro -- for onveneince as part of transposing and dataframe construction for `polars`, `roxmltree` should there be critical attribute data separate from child data (re: xml's unusual parse characteristics)
 
 # testing & linting
 

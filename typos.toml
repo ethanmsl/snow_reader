@@ -1,5 +1,5 @@
 # Settings for typos-cli tool
 
 [files]
-extend-exclude = ["data/*"]
+extend-exclude = ["data/*", "snow_files/*"]
 

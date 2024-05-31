@@ -56,11 +56,9 @@ deps-ext:
     xsv table ext_dependencies.csv
 
 
-// Common 
-
-// add `gen-env` to `init`
-// # Generate a `.env` file from `template.env`.
-// gen-env:
-//     @echo "{{CYN}}The {{GRN}}.env DATABASE_URL value{{CYN}}will populate your database path when needed.  Please edit the file to manually specify."
-//     @echo {{ if path_exists(".env") == "true" { `echo "\(.env file already exists\)"` } else { `cp 'template.env' '.env'; echo "\(.env file created\)"`} }}
+# add `gen-env` to `init`
+# # Generate a `.env` file from `template.env`.
+# gen-env:
+#     @echo "{{CYN}}The {{GRN}}.env DATABASE_URL value{{CYN}}will populate your database path when needed.  Please edit the file to manually specify."
+#     @echo {{ if path_exists(".env") == "true" { `echo "\(.env file already exists\)"` } else { `cp 'template.env' '.env'; echo "\(.env file created\)"`} }}
 
