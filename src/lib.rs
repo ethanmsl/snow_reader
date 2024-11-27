@@ -1,13 +1,12 @@
 //! Look -- I'm the `lib.rs`'s doc string! :)
 
-use std::fs;
+use std::{fs, path::Path};
 pub mod differ;
+mod error;
 pub mod snow_serde;
+use error::Result;
 
-/// An example function
-pub fn add(left: usize, right: usize) -> usize {
-        left + right
-}
+const EXAMPLE_SCRIPT_INCLUDE: &str = "snow_files/sys_script_include.xml";
 
 /// reads in a long xml-encoded SNOW file
 /// (**14_831 lines**)
@@ -22,12 +21,19 @@ pub fn add(left: usize, right: usize) -> usize {
 ///     - unload
 ///         - ...
 ///     - ...
-pub fn snow_example_long() -> String {
-        fs::read_to_string("snow_files/sys_script_include.xml").expect("\nFile Read Error\n")
+pub fn snow_example_long<P>(path: Option<&P>) -> Result<String>
+        where P: AsRef<Path>
+{
+        let string_path = match path {
+                Some(path) => fs::read_to_string(path)?,
+                None => fs::read_to_string(EXAMPLE_SCRIPT_INCLUDE)?,
+        };
+        Ok(string_path)
 }
 
 /// extracted & altered script-include to use to test search & diff'ing
-pub fn snow_example_search() -> String {
+pub fn snow_example_search() -> String
+{
         fs::read_to_string("snow_files/search_include.xml").expect("\nFile Read Error\n")
 }
 
@@ -42,7 +48,8 @@ pub fn snow_example_search() -> String {
 ///             - various
 ///             - various
 ///             - ...
-pub fn snow_example_short() -> String {
+pub fn snow_example_short() -> String
+{
         fs::read_to_string("snow_files/sysevent_script_action.xml").expect("\nFile Read Error\n")
 }
 
@@ -56,7 +63,8 @@ pub fn snow_example_short() -> String {
 ///             - various
 ///             - various
 ///             - ...
-pub fn snow_example_art() -> String {
+pub fn snow_example_art() -> String
+{
         fs::read_to_string("snow_files/fake_simple.xml").expect("\nFile Read Error\n")
 }
 
@@ -72,15 +80,3 @@ pub fn snow_example_art() -> String {
 //
 //     Ok(())
 // }
-
-#[cfg(test)]
-mod tests {
-        use super::*;
-
-        #[test]
-        /// An example test
-        fn it_works() {
-                let result = add(2, 2);
-                assert_eq!(result, 4);
-        }
-}
