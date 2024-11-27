@@ -1,5 +1,13 @@
 # Settings for typos-cli tool
+# [Typos Configuration Reference](https://github.com/crate-ci/typos/blob/master/docs/reference.md)
+#
+# Syntax: .gitignore glob syntax
+#        `*`    : match any file in a single level
+#        `**`   : recursively match
+#        `**/*` : specifies any _files_ at any level (subtly & potentially different)
+
+[default.extend-words]
+lib_blocking = "lib_blocking"
 
 [files]
-extend-exclude = ["data/*", "snow_files/*"]
-
+extend-exclude = ["**/data/**", "*.log", "*.csv"]
