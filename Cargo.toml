@@ -1,9 +1,24 @@
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [package]
 name = "snow_read"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
+authors = ["Ethan Skowronski-Lutz"]
+description = "template workspace; explorative"
+homepage = "https://github.com/ethanmsl/snow_read"
+documentation = "https://github.com/ethanmsl/snow_read"
+repository = "https://github.com/ethanmsl/snow_read"
+keywords = ["template", "workspace", "explorative"]
+# publish = []
+# license = ""
+# license-file = ""
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+allow_attributes = "warn"
+
 
 [dependencies]
 console = "0.15"
@@ -11,5 +26,5 @@ quick-xml = { version = "0.31", features = ["serde"] }
 roxmltree = "0.20"
 serde = { version = "1.0", features = ["derive", "std"] }
 serde-xml-rs = "0.6"
-similar = { version = "2.5", features = ["inline"]}
+similar = { version = "2.5", features = ["inline"] }
 struct-field-names-as-array = "0.3"
