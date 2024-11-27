@@ -1,12 +1,14 @@
 use std::fmt;
 
-use console::{style, Style};
+use console::{Style, style};
 use similar::{ChangeTag, TextDiff};
 
 struct Line(Option<usize>);
 
-impl fmt::Display for Line {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+impl fmt::Display for Line
+{
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result
+        {
                 match self.0 {
                         None => write!(f, "    "),
                         Some(idx) => write!(f, "{:<4}", idx + 1),
@@ -15,7 +17,8 @@ impl fmt::Display for Line {
 }
 
 /// takes two string references and pretty prints their diffs
-pub fn diff_inline(old: &str, new: &str) {
+pub fn diff_inline(old: &str, new: &str)
+{
         let diff = TextDiff::from_lines(old, new);
 
         for (idx, group) in diff.grouped_ops(3).iter().enumerate() {
@@ -29,18 +32,13 @@ pub fn diff_inline(old: &str, new: &str) {
                                         ChangeTag::Insert => ("+", Style::new().green()),
                                         ChangeTag::Equal => (" ", Style::new().dim()),
                                 };
-                                print!(
-                                        "{}{} |{}",
-                                        style(Line(change.old_index())).dim(),
-                                        style(Line(change.new_index())).dim(),
-                                        s.apply_to(sign).bold(),
-                                );
+                                print!("{}{} |{}",
+                                       style(Line(change.old_index())).dim(),
+                                       style(Line(change.new_index())).dim(),
+                                       s.apply_to(sign).bold(),);
                                 for (emphasized, value) in change.iter_strings_lossy() {
                                         if emphasized {
-                                                print!(
-                                                        "{}",
-                                                        s.apply_to(value).underlined().on_black()
-                                                );
+                                                print!("{}", s.apply_to(value).underlined().on_black());
                                         } else {
                                                 print!("{}", s.apply_to(value));
                                         }

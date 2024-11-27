@@ -6,7 +6,8 @@ use struct_field_names_as_array::FieldNamesAsArray;
 /// the Parent(most) structure
 /// a series of script types
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
-pub struct Unload {
+pub struct Unload
+{
         // sysevent_script_action: Option<Vec<ScriptContents>>,
         #[serde(rename = "$value")]
         pub scripts: Vec<Script>,
@@ -15,7 +16,8 @@ pub struct Unload {
 /// the kinds of Scripts that can be found
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "snake_case")]
-pub enum Script {
+pub enum Script
+{
         SysScriptInclude(ScriptContents),
         SysEventScriptAction(ScriptContents),
 }
@@ -23,7 +25,8 @@ pub enum Script {
 /// represents the content elements of an individual script
 /// Currently all set as "Option" -- as I'm uncertain regarding consistency
 #[derive(FieldNamesAsArray, Debug, Serialize, Deserialize, PartialEq)]
-pub struct ScriptContents {
+pub struct ScriptContents
+{
         pub access: Option<String>,
         pub active: Option<String>,
         pub api_name: Option<String>,
