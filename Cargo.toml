@@ -21,10 +21,73 @@ allow_attributes = "warn"
 
 
 [dependencies]
-console = "0.15"
-quick-xml = { version = "0.31", features = ["serde"] }
+## ~ specific ~
+### ~- xml parse options -~
+quick-xml = { version = "0.37", features = ["serde"] }
 roxmltree = "0.20"
-serde = { version = "1.0", features = ["derive", "std"] }
 serde-xml-rs = "0.6"
+
+### ~- other -~
+console = "0.15"
 similar = { version = "2.5", features = ["inline"] }
 struct-field-names-as-array = "0.3"
+
+
+## --Async--
+# futures = "0.3"
+tokio = { version = "1", features = ["full", "tracing"] }
+
+## --CLI--
+clap = { version = "4", features = [
+    "env",
+    "derive",
+    "string",
+    "unicode",
+    "wrap_help",
+] }
+dialoguer = "0.11"
+owo-colors = "4"
+indicatif = "0.17"
+
+## --Diagnostics--
+tracing = "0.1"
+# tracing-appender = "0.2"
+tracing-error = "0.2"
+tracing-timing = "0.6"
+tracing-subscriber = { version = "0.3", features = ["chrono", "env-filter"] }
+
+## --Env & Files--
+csv = "1"
+dotenvy = "0.15"
+# include_dir = "0.7"
+secrecy = "0.8"
+walkdir = "2"
+
+## --Explore--
+backon = { version = "1", features = ["tokio-sleep"] }
+minijinja = { version = "2", default-features = false }
+
+## --General--
+bon = "2"
+chrono = { version = "0.4", features = ["serde"] }
+derive_more = { version = "1", features = [
+    "full",
+    "constructor",
+    "error",
+    "deref",
+    "from",
+] }
+itertools = "0.13"
+regex = { version = "1", features = ["logging"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+## --Networking--
+reqwest = { version = "0.12", features = ["blocking", "json"] }
+
+# Dev-Dependencies
+## --Property Sample Testing--
+quickcheck = "1"
+quickcheck_macros = "1"
+## --Test Trace-Logging--
+test-log = { version = "0.2", features = ["trace"] }
