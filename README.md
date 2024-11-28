@@ -16,6 +16,7 @@ link: [XML Wikipedia](https://en.wikipedia.org/wiki/XML_tree)
   - `<tag>...</tag>`: opening and closing tag
   - `<tag/>`: self-closing tag
   - `<tag attr="value">...</tag>`: tag with attribute
+- Various other items (e.g. CDATA, comments, attribute normalization, DTD specs)
 
 # XML Parsing
 Parsing comes in two varieties:
@@ -27,20 +28,57 @@ Rust libraries focus on streaming approach, with Serde support for (~) DOM-like 
 
 # Crates of Interest
 ## [Quick-XML](https://github.com/tafia/quick-xml)
-- good [Docs](https://docs.rs/quick-xml/latest/quick_xml/) & [Readme](https://docs.rs/quick-xml/latest/quick_xml/)
+- decent [Docs](https://docs.rs/quick-xml/latest/quick_xml/) & [Readme](https://docs.rs/quick-xml/latest/quick_xml/), good [Examples](https://github.com/tafia/quick-xml/tree/master/examples)
 - streaming
 - r/w
 - serde-compatible with [`serialize`](https://docs.rs/quick-xml/latest/quick_xml/index.html#serialize) flag
+  - [`de`(serialize) module docs](https://docs.rs/quick-xml/latest/quick_xml/de/index.html)
+  - *!! there exists a tool to derive quick-xml structs from XML files, [xml_schema_generator](https://github.com/Thomblin/xml_schema_generator) !!*
 - no iterator methods (related to being able to return references, e.g. for very large document)
+- lower-level parsing; ~manual, if not using serde
+  - depth and tag matching are up to programmer
+- Key Components:
+  - [`Config`](https://docs.rs/quick-xml/latest/quick_xml/reader/struct.Config.html)
+    - Configure parser behavior
+  - [`Reader`](https://docs.rs/quick-xml/latest/quick_xml/reader/struct.Reader.html)
+    - main struct that will walk through XML
+  - [`Events`](https://docs.rs/quick-xml/latest/quick_xml/events/enum.Event.html)
+    - enum of what can be found while reading XML
+    - ```rust
+      pub enum Event<'a> {
+          Start(BytesStart<'a>),
+          End(BytesEnd<'a>),
+          Empty(BytesStart<'a>),
+          Text(BytesText<'a>),
+          CData(BytesCData<'a>),
+          Comment(BytesText<'a>),
+          Decl(BytesDecl<'a>),
+          PI(BytesPI<'a>),
+          DocType(BytesText<'a>),
+          Eof,
+      }
+      ```
+
 
 ## [RoxmlTree](https://github.com/RazrFalcon/roxmltree)
-- decent [examples](https://github.com/RazrFalcon/roxmltree/tree/master/examples)
-- good [readme](https://github.com/RazrFalcon/roxmltree), with nice clarity on abilities
-- decent [docs](https://docs.rs/roxmltree/latest/roxmltree/)
+- decent [examples](https://github.com/RazrFalcon/roxmltree/tree/master/examples), good [readme](https://github.com/RazrFalcon/roxmltree), with nice clarity on abilities, **poor** [docs](https://docs.rs/roxmltree/latest/roxmltree/)
 - read-only
 - accessory, [serde-roxmltree](https://github.com/adamreichold/serde-roxmltree), offers serde-compatibility
   - [docs](https://docs.rs/serde-roxmltree/latest/serde_roxmltree/) are decent, given simplicity
 - iterator methods
+- [memory usage](https://github.com/RazrFalcon/roxmltree/blob/master/README.md#memory-overhead) (over)estimate: 10x the size of the XML document
+- Key Components:
+  - [Document](https://docs.rs/roxmltree/latest/roxmltree/struct.Document.html#)
+  - [NodeType](https://docs.rs/roxmltree/latest/roxmltree/enum.NodeType.html#)
+    - ```rust
+      pub enum NodeType {
+          Root,
+          Element,
+          PI,
+          Comment,
+          Text,
+      }
+      ```
 
 ## Other
 (What I originally wrote uses [xml_serde_rs](https://github.com/RReverser/serde-xml-rs), which clearly works, but is two-years unchanged and probably not the ideal option.)
