@@ -25,6 +25,25 @@ Parsing comes in two varieties:
 Rust libraries focus on streaming approach, with Serde support for (~) DOM-like parsing.
 `XPATH` is apparently a (JQL-like?) approach common to parsing XML, but is not well represented in the Rust-ecosystem.
 
+# Crates of Interest
+## [Quick-XML](https://github.com/tafia/quick-xml)
+- good [Docs](https://docs.rs/quick-xml/latest/quick_xml/) & [Readme](https://docs.rs/quick-xml/latest/quick_xml/)
+- streaming
+- r/w
+- serde-compatible with [`serialize`](https://docs.rs/quick-xml/latest/quick_xml/index.html#serialize) flag
+- no iterator methods (related to being able to return references, e.g. for very large document)
+
+## [RoxmlTree](https://github.com/RazrFalcon/roxmltree)
+- decent [examples](https://github.com/RazrFalcon/roxmltree/tree/master/examples)
+- good [readme](https://github.com/RazrFalcon/roxmltree), with nice clarity on abilities
+- decent [docs](https://docs.rs/roxmltree/latest/roxmltree/)
+- read-only
+- accessory, [serde-roxmltree](https://github.com/adamreichold/serde-roxmltree), offers serde-compatibility
+  - [docs](https://docs.rs/serde-roxmltree/latest/serde_roxmltree/) are decent, given simplicity
+- iterator methods
+
+## Other
+(What I originally wrote uses [xml_serde_rs](https://github.com/RReverser/serde-xml-rs), which clearly works, but is two-years unchanged and probably not the ideal option.)
 
 # crates built on
 
