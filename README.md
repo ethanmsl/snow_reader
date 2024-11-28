@@ -5,6 +5,27 @@
 - in-line diff based extraction
 - coloring and human formatting of differences
 
+# XML Structure
+link: [XML Wikipedia](https://en.wikipedia.org/wiki/XML_tree)
+- XML tags form a tree (re: nesting structure)
+  - e.g. `|root> |a>..<a| |b>|c>..<c|<b| <root|`
+- valid XML docs have a root-node (which may have an arbitrary name)
+- XML docs may have another element, outside the root-node, which contains xml info (e.g. `<?xml version="1.0" encoding="UTF-8" ?>`)
+- Tag' may have attributes (e.g. `<tag attr="value">`), variables embedded in tag opening.
+- Tag structure:
+  - `<tag>...</tag>`: opening and closing tag
+  - `<tag/>`: self-closing tag
+  - `<tag attr="value">...</tag>`: tag with attribute
+
+# XML Parsing
+Parsing comes in two varieties:
+- "DOM" based, which assumes full tree resides in-memory
+- 'streaming' based, which allows larger than memory parsing
+
+Rust libraries focus on streaming approach, with Serde support for (~) DOM-like parsing.
+`XPATH` is apparently a (JQL-like?) approach common to parsing XML, but is not well represented in the Rust-ecosystem.
+
+
 # crates built on
 
 - **using**: `serde` for deserialization, `xml_serde_rs` for xml pattern of deserializer, `similar` for multi-algorithm text differencing, `console` for formatting of output
@@ -13,4 +34,4 @@
 
 # testing & linting
 
-- currently using [pre-commit hook](https://github.com/ethanmsl/Boilerplate/blob/main/Rust-Boilerplate/rust-pre-commit); will probably add github actions in near future 
+- currently using [pre-commit hook](https://github.com/ethanmsl/Boilerplate/blob/main/Rust-Boilerplate/rust-pre-commit); will probably add github actions in near future
