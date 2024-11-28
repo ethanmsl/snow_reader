@@ -8,8 +8,7 @@ use error::Result;
 use snow_read::{differ::diff_inline,
                 snow_serde::{Script, ScriptContents, Unload}};
 use struct_field_names_as_array::FieldNamesAsArray;
-use tracing::{Level, debug, info, trace};
-use tracing_subscriber::EnvFilter;
+use tracing::{Level, debug, info};
 
 // long xml-encoded SNow file
 const SNOW_EXAMPLE_LONG_FILE: &str = "snow_files/sys_script_include.xml";

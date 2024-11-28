@@ -115,7 +115,7 @@ enum XmlToken
         Other,
 }
 
-const XML_EXAMPLE: &str = r#"<?xml version="1.0" encoding="UTF-8" ?>
+const _XML_EXAMPLE: &str = r#"<?xml version="1.0" encoding="UTF-8" ?>
         <unload unload_date="2022-10-14 22:34:04">
             <sysevent_script_action action="INSERT_OR_UPDATE">
                 <active>true</active>
