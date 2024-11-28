@@ -59,6 +59,7 @@ tracing = "0.1"
 tracing-error = "0.2"
 tracing-timing = "0.6"
 tracing-subscriber = { version = "0.3", features = ["chrono", "env-filter"] }
+tracing-tree = { version = "0.4.0", features = ["time"] }
 
 ## --Env & Files--
 csv = "1"
@@ -96,5 +97,4 @@ quickcheck_macros = "1"
 ## --Test Trace-Logging--
 test-log = { version = "0.2", features = ["trace"] }
 logos = { version = "0.14.2", features = ["forbid_unsafe"] }
-tracing-tree = { version = "0.4.0", features = ["time"] }
 # logos = { version = "0.14.2", features = ["debug", "forbid_unsafe"] }
