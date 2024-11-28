@@ -1,5 +1,7 @@
 use logos::Logos;
-use tracing::{Level, debug, info};
+use tracing::{Level, debug, info, span, warn};
+use tracing_subscriber::prelude::*;
+use tracing_tree::time::{LocalDateTime, Uptime};
 
 #[derive(Logos, Debug, PartialEq)]
 #[logos(skip r"[ \t\n\f]+")] // Ignore this regex pattern between tokens
@@ -25,29 +27,52 @@ enum Token
 
 fn main() -> Result<(), Box<dyn std::error::Error>>
 {
-        tracing_subscriber::fmt().with_max_level(Level::DEBUG).pretty().init();
+        let subscriber = tracing_subscriber::Registry::default()
+                .with(tracing_tree::HierarchicalLayer::new(2)
+                        .with_timer(Uptime::default())
+                        .with_span_modes(true)
+                        .with_indent_lines(true)
+                );
 
-        let mut lex = Token::lexer("Create ridiculously fast Lexers.");
-        info!(?lex);
-        for i in 0.. {
-                let token = lex.next();
-                let span = lex.span();
-                let slice = lex.slice();
-                debug!(i, ?token, ?span, ?slice);
-                if token.is_none() {
-                        break;
+        tracing::subscriber::set_global_default(subscriber).unwrap();
+
+        // tracing_subscriber::fmt().with_max_level(Level::DEBUG).pretty().init();
+        let span = tracing::span!(Level::INFO, "Starting up...");
+        let _guard = span.enter();
+
+        {
+                let mut lex = Token::lexer("Create ridiculously fast Lexers.");
+                let span = tracing::span!(Level::INFO, "Lexee Default", ?lex);
+                let _guard = span.enter();
+                for i in 0.. {
+                        let token = lex.next();
+                        let span = lex.span();
+                        let slice = lex.slice();
+                        debug!(i, ?token, ?span, ?slice);
+                        if token.is_none() {
+                                break;
+                        }
                 }
         }
 
-        let mut calclex = CalcToken::lexer("(13+ 05) *2 -77");
-        info!(?calclex);
-        for i in 0.. {
-                let token = calclex.next();
-                let span = calclex.span();
-                let slice = calclex.slice();
-                debug!(i, ?token, ?span, ?slice);
-                if token.is_none() {
-                        break;
+        let time_to_wait = std::time::Duration::from_millis(1_200);
+        warn!(?time_to_wait, "starting a sleep...");
+        std::thread::sleep(time_to_wait);
+        warn!("sleep finished");
+
+        {
+                let mut calclex = CalcToken::lexer("(13+ 05) *2 -77");
+                let span = tracing::span!(Level::INFO, "Calculation Lexee");
+                let _guard = span.enter();
+                info!(?calclex);
+                for i in 0.. {
+                        let token = calclex.next();
+                        let span = calclex.span();
+                        let slice = calclex.slice();
+                        debug!(i, ?token, ?span, ?slice);
+                        if token.is_none() {
+                                break;
+                        }
                 }
         }
 
