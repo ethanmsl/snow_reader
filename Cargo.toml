@@ -60,7 +60,7 @@ tracing-subscriber = { version = "0.3", features = ["chrono", "env-filter"] }
 csv = "1"
 dotenvy = "0.15"
 # include_dir = "0.7"
-secrecy = "0.8"
+secrecy = "0.10"
 walkdir = "2"
 
 ## --Explore--
@@ -68,7 +68,7 @@ backon = { version = "1", features = ["tokio-sleep"] }
 minijinja = { version = "2", default-features = false }
 
 ## --General--
-bon = "2"
+bon = "3"
 chrono = { version = "0.4", features = ["serde"] }
 derive_more = { version = "1", features = [
     "full",
