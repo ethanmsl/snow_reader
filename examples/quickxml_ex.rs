@@ -1,6 +1,6 @@
 //! Quick-XML repurposed example
 //!
-//! `clear; RUST_LOG=quickxml_ex=trace carrex quickxml_ex`
+//! `clear; clear; RUST_LOG=quickxml_ex=trace carrex quickxml_ex`
 
 use quick_xml::{events::Event, reader::Reader};
 use tracing::{error, info, warn};
@@ -33,7 +33,7 @@ fn main()
         reader.config_mut().trim_text(true);
 
         let mut count = 0;
-        let mut txt = Vec::new();
+        let mut txt_vals = Vec::new();
         let mut buf = Vec::new();
 
         // The `Reader` does not implement `Iterator` because it outputs borrowed data (`Cow`s)
@@ -50,7 +50,7 @@ fn main()
                         }
                         Ok(Event::Text(e)) => {
                                 info!(?e, "Event text!");
-                                txt.push(e.unescape().unwrap().into_owned())
+                                txt_vals.push(e.unescape().unwrap().into_owned())
                         }
 
                         // There are several other `Event`s we do not consider here
@@ -68,4 +68,5 @@ fn main()
                 buf.clear();
         }
         println!("Found {} items", count);
+        println!("text: {:?}", txt_vals);
 }
