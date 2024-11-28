@@ -1,5 +1,5 @@
 use logos::Logos;
-use tracing::{Level, debug, info, span, warn};
+use tracing::{Level, debug, info, warn};
 use tracing_subscriber::prelude::*;
 use tracing_tree::time::{LocalDateTime, Uptime};
 
