@@ -23,7 +23,11 @@ allow_attributes = "warn"
 [dependencies]
 ## ~ specific ~
 ### ~- xml parse options -~
-quick-xml = { version = "0.37", features = ["serde"] }
+quick-xml = { version = "0.37", features = [
+    "serde",
+    "serde-types",
+    "serialize",
+] }
 roxmltree = "0.20"
 serde-xml-rs = "0.6"
 
