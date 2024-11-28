@@ -28,7 +28,7 @@ pub enum Script
 pub struct ScriptContents
 {
         pub access: Option<String>,
-        pub active: Option<String>,
+        pub active: Option<bool>,
         pub api_name: Option<String>,
         pub client_callable: Option<String>,
         pub description: Option<String>,
