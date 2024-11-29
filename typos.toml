@@ -10,4 +10,5 @@
 lib_blocking = "lib_blocking"
 
 [files]
-extend-exclude = ["**/data/**", "*.log", "*.csv"]
+# `(event.parm1)`in **qx_serd_ex.rs**; no nice way to specify & pattern file for it, that I see
+extend-exclude = ["**/data/**", "*.log", "*.csv", "qx_serd_ex.rs"]
