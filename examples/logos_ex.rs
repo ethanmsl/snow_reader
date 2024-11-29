@@ -1,7 +1,7 @@
 use logos::Logos;
 use tracing::{Level, debug, info, warn};
 use tracing_subscriber::prelude::*;
-use tracing_tree::time::{LocalDateTime, Uptime};
+use tracing_tree::time::Uptime;
 
 #[derive(Logos, Debug, PartialEq)]
 #[logos(skip r"[ \t\n\f]+")] // Ignore this regex pattern between tokens
