@@ -34,6 +34,16 @@ Rust libraries focus on streaming approach, with Serde support for (~) DOM-like 
 - serde-compatible with [`serialize`](https://docs.rs/quick-xml/latest/quick_xml/index.html#serialize) flag
   - [`de`(serialize) module docs](https://docs.rs/quick-xml/latest/quick_xml/de/index.html)
   - *!! there exists a tool to derive quick-xml structs from XML files, [xml_schema_generator](https://github.com/Thomblin/xml_schema_generator) !!*
+  - **NOTE**: `serde_json::Value` can accept general value to allow for capture of unspecified values.
+    - ```rust
+        #[derive(Debug, Serialize, Deserialize)]
+        struct XmlStruct {
+            // ...
+            #[serde(flatten)]
+            other_vals: HashMap<String, serde_json::Value>,
+        }
+        ```
+       ```
 - no iterator methods (related to being able to return references, e.g. for very large document)
 - lower-level parsing; ~manual, if not using serde
   - depth and tag matching are up to programmer
