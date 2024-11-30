@@ -4,8 +4,7 @@
 
 use std::collections::HashSet;
 
-fn main()
-{
+fn main() {
         let args = {
                 let args: Vec<_> = std::env::args().collect();
 
@@ -18,7 +17,10 @@ fn main()
 
         let text = std::fs::read_to_string(&args[1]).unwrap();
         let doc = {
-                let opt = roxmltree::ParsingOptions { allow_dtd: true, ..roxmltree::ParsingOptions::default() };
+                let opt = roxmltree::ParsingOptions {
+                        allow_dtd: true,
+                        ..roxmltree::ParsingOptions::default()
+                };
                 let doc = match roxmltree::Document::parse_with_options(&text, opt) {
                         Ok(v) => v,
                         Err(e) => {
@@ -35,7 +37,10 @@ fn main()
                         println!("element {i}:\n{:?}\n", node);
                 }
                 println!("\nInput:\n---\n{}\n---\n", doc.input_text());
-                println!("Elements count: {}", doc.root().descendants().filter(|n| n.is_element()).count());
+                println!(
+                        "Elements count: {}",
+                        doc.root().descendants().filter(|n| n.is_element()).count()
+                );
         }
 
         let attrs_count: usize = doc.root().descendants().map(|n| n.attributes().len()).sum();
@@ -58,7 +63,10 @@ fn main()
                 }
         }
 
-        println!("Comments count: {}", doc.root().descendants().filter(|n| n.is_comment()).count());
+        println!(
+                "Comments count: {}",
+                doc.root().descendants().filter(|n| n.is_comment()).count()
+        );
 
         println!("Comments:");
         for node in doc.root().descendants().filter(|n| n.is_comment()) {

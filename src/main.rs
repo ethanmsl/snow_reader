@@ -20,8 +20,7 @@ const _SNOW_EXAMPLE_SHORT_FILE: &str = "snow_files/sysevent_script_action.xml";
 const _SNOW_FAKE_SIMPLE_FILE: &str = "snow_files/fake_simple.xml";
 const PD_SNOW_FILE: &str = "snow_files/PD Script Includes.xml";
 
-fn main() -> Result<()>
-{
+fn main() -> Result<()> {
         tracing_subscriber::fmt().with_max_level(Level::DEBUG).init();
         info!("Starting up...");
         debug!("hi....");
@@ -32,16 +31,20 @@ fn main() -> Result<()>
         let item_search: Unload = serde_xml_rs::from_str(&fs::read_to_string(SNOW_EXAMPLE_SEARCH_FILE)?)?;
         debug!(?item_long, "hi....");
 
-        let Script::SysScriptInclude(search_contents) = &item_search.scripts[0] else { panic!("nope") };
+        let Script::SysScriptInclude(search_contents) = &item_search.scripts[0] else {
+                panic!("nope")
+        };
         for script in &item_long.scripts {
                 let contents = match script {
                         Script::SysScriptInclude(x) | Script::SysEventScriptAction(x) => x,
                 };
                 if search_contents.name == contents.name {
                         println!("\nATTENTION.");
-                        println!("File difference detected in file:
+                        println!(
+                                "File difference detected in file:
                                     --- {} ---\n",
-                                 search_contents.name);
+                                search_contents.name
+                        );
                         let old = contents.script.as_ref().unwrap();
                         let new = search_contents.script.as_ref().unwrap();
 
@@ -66,11 +69,13 @@ fn main() -> Result<()>
                         Script::SysScriptInclude(x) => ("ScriptInclude", x),
                         Script::SysEventScriptAction(x) => ("ScriptAction", x),
                 };
-                info!(i,
-                      script_type,
-                      name = contents.name,
-                      active = contents.active,
-                      updated_on = contents.sys_updated_on);
+                info!(
+                        i,
+                        script_type,
+                        name = contents.name,
+                        active = contents.active,
+                        updated_on = contents.sys_updated_on
+                );
         }
         Ok(())
 }

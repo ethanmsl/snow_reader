@@ -6,9 +6,11 @@ use quick_xml::{events::Event, reader::Reader};
 use tracing::{error, info, warn};
 use tracing_subscriber::EnvFilter;
 
-fn main()
-{
-        tracing_subscriber::fmt().with_env_filter(EnvFilter::from_default_env()).pretty().init();
+fn main() {
+        tracing_subscriber::fmt()
+                .with_env_filter(EnvFilter::from_default_env())
+                .pretty()
+                .init();
 
         // let xml = r#"
         //      <tag1 att1 = "test">
@@ -44,8 +46,10 @@ fn main()
                 match reader.read_event_into(&mut buf) {
                         Ok(Event::Start(e)) => {
                                 info!(?e, "Start of Event");
-                                println!("attributes values: {:?}",
-                                         e.attributes().map(|a| a.unwrap().value).collect::<Vec<_>>());
+                                println!(
+                                        "attributes values: {:?}",
+                                        e.attributes().map(|a| a.unwrap().value).collect::<Vec<_>>()
+                                );
                                 count += 1;
                         }
                         Ok(Event::Text(e)) => {

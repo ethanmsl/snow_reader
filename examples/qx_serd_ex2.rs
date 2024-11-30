@@ -39,8 +39,7 @@ const SNOW_FAKE_EXAMPLE: &str = r#"
 </unload>"#;
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct Unload
-{
+pub struct Unload {
         #[serde(rename = "@unload_date")]
         pub unload_date:            String,
         #[serde(rename = "$text")]
@@ -62,8 +61,7 @@ pub struct Herring1 {}
 pub struct Herring2 {}
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct SyseventScriptAction
-{
+pub struct SyseventScriptAction {
         #[serde(rename = "@action")]
         pub action:                 String,
         #[serde(rename = "$text")]
@@ -75,8 +73,7 @@ pub struct SyseventScriptAction
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct SysScope
-{
+pub struct SysScope {
         #[serde(rename = "@display_value")]
         pub display_value: String,
         #[serde(rename = "$text")]
@@ -84,8 +81,7 @@ pub struct SysScope
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct FilterCondition
-{
+pub struct FilterCondition {
         #[serde(rename = "@table")]
         pub table: String,
         #[serde(rename = "$text")]
@@ -94,8 +90,7 @@ pub struct FilterCondition
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct Item
-{
+pub struct Item {
         #[serde(rename = "@goto")]
         pub goto:     String,
         #[serde(rename = "@or")]
@@ -112,12 +107,12 @@ pub struct Item
         pub newquery: String,
 }
 
-fn main() -> Result<(), Box<dyn std::error::Error>>
-{
-        tracing_subscriber::fmt().with_timer(tracing_subscriber::fmt::time::SystemTime)
-                                 .pretty()
-                                 .with_env_filter(EnvFilter::from_default_env())
-                                 .init();
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+        tracing_subscriber::fmt()
+                .with_timer(tracing_subscriber::fmt::time::SystemTime)
+                .pretty()
+                .with_env_filter(EnvFilter::from_default_env())
+                .init();
 
         let config: Config = from_str(XML)?;
         dbg!(config);
@@ -133,8 +128,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>>
 
 #[derive(Debug, PartialEq, Default, Deserialize)]
 #[serde(default, rename_all = "PascalCase")]
-struct Config
-{
+struct Config {
         #[serde(rename = "DefaultSettings")]
         settings:     DefaultSettings,
         localization: Localization,
@@ -142,8 +136,7 @@ struct Config
 
 #[derive(Debug, PartialEq, Default, Deserialize)]
 #[serde(default)]
-struct DefaultSettings
-{
+struct DefaultSettings {
         #[serde(rename = "@Language")]
         language: String,
         #[serde(rename = "@Greeting")]
@@ -152,15 +145,13 @@ struct DefaultSettings
 
 #[derive(Debug, PartialEq, Default, Deserialize)]
 #[serde(rename_all = "PascalCase")]
-struct Localization
-{
+struct Localization {
         translation: Vec<Translation>,
 }
 
 #[derive(Debug, PartialEq, Default, Deserialize)]
 #[serde(default)]
-struct Translation
-{
+struct Translation {
         #[serde(rename = "@Tag")]
         tag:  String,
         #[serde(rename = "@Language")]

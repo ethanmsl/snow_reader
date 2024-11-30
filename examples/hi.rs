@@ -1,6 +1,5 @@
 //! hi
 
-fn main()
-{
+fn main() {
         println!("hi");
 }

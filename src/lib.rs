@@ -22,7 +22,8 @@ const EXAMPLE_SCRIPT_INCLUDE: &str = "snow_files/sys_script_include.xml";
 ///         - ...
 ///     - ...
 pub fn snow_example_long<P>(path: Option<&P>) -> Result<String>
-        where P: AsRef<Path>
+where
+        P: AsRef<Path>,
 {
         Ok(match path {
                 Some(path) => fs::read_to_string(path)?,

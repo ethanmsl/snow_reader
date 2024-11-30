@@ -5,8 +5,7 @@ use tracing_tree::time::Uptime;
 
 #[derive(Logos, Debug, PartialEq)]
 #[logos(skip r"[ \t\n\f]+")] // Ignore this regex pattern between tokens
-enum Token
-{
+enum Token {
         // Tokens can be literal strings, of any length.
         #[token("fast")]
         Fast,
@@ -25,14 +24,11 @@ enum Token
 //                                         0 1 2 3 _
 //                                                   5 6 7 8 9 0 1 _
 
-fn main() -> Result<(), Box<dyn std::error::Error>>
-{
-        let subscriber = tracing_subscriber::Registry::default()
-                .with(tracing_tree::HierarchicalLayer::new(2)
-                        .with_timer(Uptime::default())
-                        .with_span_modes(true)
-                        .with_indent_lines(true)
-                );
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+        let subscriber = tracing_subscriber::Registry::default().with(tracing_tree::HierarchicalLayer::new(2)
+                .with_timer(Uptime::default())
+                .with_span_modes(true)
+                .with_indent_lines(true));
 
         tracing::subscriber::set_global_default(subscriber).unwrap();
 
@@ -95,8 +91,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>>
 #[derive(Logos, Debug, PartialEq, Eq, Hash, Clone)]
 #[logos(skip r"[ \t\n]+")]
 #[logos(error = String)]
-enum CalcToken
-{
+enum CalcToken {
         #[token("+")]
         Plus,
 
@@ -121,8 +116,7 @@ enum CalcToken
 
 #[derive(Logos, Debug, PartialEq)]
 #[logos(skip r"[ \t\n]+")]
-enum XmlToken
-{
+enum XmlToken {
         // Tokens can be literal strings, of any length.
         #[token("<")]
         OpenTagStart,
