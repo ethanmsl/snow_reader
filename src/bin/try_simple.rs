@@ -1,6 +1,6 @@
 //! Attempting auto-derivation using
 //!
-//! `xml_schema_generator snow_files/fake_simple.xml --derive 'Serialize, Deserialize, Debug'`
+//! `xml_schema_generator snow_files/fake_simple.xml --derive 'Serialize, Deserialize, Debug' | pbcopy`
 
 use std::fs;
 
@@ -11,18 +11,18 @@ const SNOW_FAKE_SIMPLE_FILE: &str = "snow_files/fake_simple.xml";
 
 fn main() -> Result<(), Box<dyn core::error::Error>> {
         println!("------------------------------------------");
-        println!("reading from file {}", SNOW_FAKE_SIMPLE_FILE);
+        println!("Reading from file:\n{}", SNOW_FAKE_SIMPLE_FILE);
         println!("------------------------------------------");
 
         let simple_xml_string: String = fs::read_to_string(SNOW_FAKE_SIMPLE_FILE)?;
 
         println!("------------------------------------------");
-        println!("string{}", simple_xml_string);
+        println!("Raw string read of xml:\n{}", simple_xml_string);
         println!("------------------------------------------");
 
         let test_serd_xml: Unload = de::from_str(&fs::read_to_string(SNOW_FAKE_SIMPLE_FILE)?)?;
         println!("------------------------------------------");
-        dbg!("{}", test_serd_xml);
+        println!("Debug verison of derived struct:\n{:?}", test_serd_xml);
         println!("------------------------------------------");
 
         // let config: Config = from_str(XML)?;
