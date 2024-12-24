@@ -22,7 +22,7 @@ fn main() -> Result<(), Box<dyn core::error::Error>> {
 
         let test_serd_xml: Unload = de::from_str(&fs::read_to_string(SNOW_FAKE_SIMPLE_FILE)?)?;
         println!("------------------------------------------");
-        println!("Debug verison of derived struct:\n{:?}", test_serd_xml);
+        println!("Debug version of derived struct:\n{:?}", test_serd_xml);
         println!("------------------------------------------");
 
         // let config: Config = from_str(XML)?;

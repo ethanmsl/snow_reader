@@ -1,6 +1,6 @@
 # current behavior
 
-- XML Pasrsing (via static/optional struct declaration and serde extension based deserialization)
+- XML Parsing (via static/optional struct declaration and serde extension based deserialization)
 - field based searching
 - in-line diff based extraction
 - coloring and human formatting of differences
