@@ -6,6 +6,7 @@ use std::fs;
 
 use eframe::run_native;
 use egui::{CentralPanel, ScrollArea};
+use egui_extras::syntax_highlighting::{CodeTheme, code_view_ui};
 use quick_xml::de;
 use serde::{Deserialize, Serialize};
 
@@ -41,9 +42,13 @@ impl eframe::App for XmlBrowser {
                                 ui.heading(&script.name);
                                 ui.label(format!("API Name: {}", &script.api_name));
                                 ui.add_space(8.0);
+                                // ScrollArea::vertical()
+                                //         .auto_shrink(false)
+                                //         .show(ui, |ui| ui.label(&script.script));
+                                // ui.add_space(8.0);
                                 ScrollArea::vertical()
                                         .auto_shrink(false)
-                                        .show(ui, |ui| ui.label(&script.script));
+                                        .show(ui, |ui| code_view_ui(ui, &CodeTheme::dark(12.), &script.script, "js"));
                         };
                 });
         }
