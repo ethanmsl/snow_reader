@@ -100,5 +100,5 @@ quickcheck = "1"
 quickcheck_macros = "1"
 ## --Test Trace-Logging--
 test-log = { version = "0.2", features = ["trace"] }
-logos = { version = "0.14.2", features = ["forbid_unsafe"] }
+logos = { version = "0.15.0", features = ["forbid_unsafe"] }
 # logos = { version = "0.14.2", features = ["debug", "forbid_unsafe"] }
